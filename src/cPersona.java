@@ -1,5 +1,6 @@
 
-public class clasePersona {
+public class cPersona {
+
     private String nombre;
     private String apellido;
     private String DNI;
