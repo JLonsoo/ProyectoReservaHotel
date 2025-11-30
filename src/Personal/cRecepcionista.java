@@ -4,10 +4,8 @@
  */
 package Personal;
 
-/**
- *
- * @author Ocampo
- */
-public class cRecepcionista {
+public class cRecepcionista extends cEmpleado{
+    
+    
     
 }

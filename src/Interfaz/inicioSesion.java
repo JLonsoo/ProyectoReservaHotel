@@ -1,3 +1,5 @@
+package Interfaz;
+import Listas.cListaClientes;
 
 import javax.swing.JOptionPane;
 
@@ -12,6 +14,8 @@ import javax.swing.JOptionPane;
  */
 public class inicioSesion extends javax.swing.JFrame {
     
+    private final cAutenticador autenticador;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(inicioSesion.class.getName());
 
     /**
@@ -19,6 +23,10 @@ public class inicioSesion extends javax.swing.JFrame {
      */
     public inicioSesion() {
         initComponents();
+        
+        cListaClientes listaClientes = new cListaClientes(); 
+        this.autenticador = new cAutenticador(listaClientes); 
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -45,7 +53,7 @@ public class inicioSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Hotel Perú SAC.");
+        jLabel1.setText("Hotel Cielo AFHS");
 
         jLabel2.setText("Inicia Sesión:");
 
@@ -81,9 +89,7 @@ public class inicioSesion extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jLabel1)
-                        .addGap(26, 26, 26)
+                        .addGap(271, 271, 271)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
@@ -103,19 +109,22 @@ public class inicioSesion extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(jLabel1)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbCliente)
                     .addComponent(rbRecepcionista)
@@ -140,8 +149,8 @@ public class inicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         String usuario = txtUsuario.getText();
         String contraseña = new String(txtContraseña.getPassword());
-        String rolSeleccionado = "";   // ← creada correctamente
-        
+        String rolSeleccionado = "";
+    
         if (rbCliente.isSelected()) {
             rolSeleccionado = "cliente";
         } else if (rbRecepcionista.isSelected()) {
@@ -149,17 +158,37 @@ public class inicioSesion extends javax.swing.JFrame {
         } else if (rbAdmin.isSelected()) {
             rolSeleccionado = "admin";
         } else {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un rol.");
-        return;
+         JOptionPane.showMessageDialog(this, "Debe seleccionar un rol.");
+            return;
         }
-        
-         if (usuario.equals("cliente1") && contraseña.equals("123") && rolSeleccionado.equals("cliente")) {
-            inicioSesion menuReserva = new inicioSesion();
-            menuReserva.setVisible(true);
-            this.dispose();
-         } else { 
-             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
-         }
+    
+    boolean autenticado = false;
+    
+    if (rolSeleccionado.equals("cliente")) {
+        autenticado = autenticador.autenticarCliente(usuario, contraseña);
+    } else {
+        autenticado = autenticador.autenticarOtroRol(usuario, contraseña, rolSeleccionado);
+    }
+
+    if (autenticado) {
+         JOptionPane.showMessageDialog(this, "¡Bienvenido, " + usuario + "!");
+         
+         if (rolSeleccionado.equals("cliente")) {
+             menuCliente menu = new menuCliente(); 
+             menu.setVisible(true);
+             this.dispose(); 
+         } else if (rolSeleccionado.equals("recepcionista")) {
+             menuRecepcion menu = new menuRecepcion(); 
+             menu.setVisible(true);
+             this.dispose(); 
+         } else if (rolSeleccionado.equals("admin")) {
+             menuAdmin menu = new menuAdmin(); 
+             menu.setVisible(true);
+             this.dispose(); 
+        }
+        } else { 
+        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

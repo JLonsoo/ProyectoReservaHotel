@@ -17,7 +17,7 @@ public class cInspector extends cEmpleado{
         this(nombreCompleto, DNI, telefono, correoElec, numContrato, 0);
     }
 
-    public int getNumHabInspeccionadas() {
+    public int NumHabInspeccionadas() {
         return numHabInspeccionadas;
     }
 

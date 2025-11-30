@@ -4,7 +4,7 @@
  */
 package Personal;
 
-class cPersona {
+public class cPersona {
     private String nombreCompleto, DNI, telefono, correoElec;
     
     public cPersona(String nombreCompleto, String DNI, String telefono, String correoElec){

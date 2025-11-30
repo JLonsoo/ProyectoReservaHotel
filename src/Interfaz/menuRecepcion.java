@@ -1,3 +1,5 @@
+package Interfaz;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -7,14 +9,14 @@
  *
  * @author Ocampo
  */
-public class menuRecepción extends javax.swing.JFrame {
+public class menuRecepcion extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(menuRecepción.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(menuRecepcion.class.getName());
 
     /**
      * Creates new form menuRecepción
      */
-    public menuRecepción() {
+    public menuRecepcion() {
         initComponents();
     }
 
@@ -65,7 +67,7 @@ public class menuRecepción extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new menuRecepción().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new menuRecepcion().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
