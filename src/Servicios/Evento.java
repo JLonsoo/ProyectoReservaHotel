@@ -1,8 +1,6 @@
 
 package Servicios;
 
-import ServiciosPackage.ServicioAdicional;
-
 public class Evento extends ServicioAdicional {
     
     public Evento() {

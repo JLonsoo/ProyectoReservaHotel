@@ -23,4 +23,8 @@ public class cEmpleado extends cPersona{
     public String getNumContrato() {
         return numContrato;
     }
+    @Override
+    public void setNombreCompleto(String nuevoNombre) {
+    super.setNombreCompleto(nuevoNombre); 
+    }
 }

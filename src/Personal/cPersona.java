@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Personal;
 
 public class cPersona {
+    
     private String nombreCompleto, DNI, telefono, correoElec;
     
     public cPersona(String nombreCompleto, String DNI, String telefono, String correoElec){
@@ -13,6 +10,8 @@ public class cPersona {
         this.telefono = telefono;
         this.correoElec = correoElec;
     }
+    
+    // --- Getters ---
     
     public String getNombreCompleto() {
         return nombreCompleto;
@@ -29,5 +28,8 @@ public class cPersona {
     public String getCorreoElec() {
         return correoElec;
     }
-    
+
+    public void setNombreCompleto(String nuevoNombre) {
+        this.nombreCompleto = nuevoNombre;
+    }
 }
