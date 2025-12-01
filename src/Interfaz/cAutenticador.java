@@ -1,60 +1,68 @@
 package Interfaz;
 
 import Listas.cListaClientes;
+import Listas.cListaRecepcionistas; 
 import Reservas.cCliente;
+import Personal.cRecepcionista; 
+import Personal.cAdministrador; 
 import java.util.List;
 
 public class cAutenticador {
 
     private final cListaClientes listaClientes;
-    // private final cListaRecepcionistas listaRecepcionistas; // Lista de Recepcionistas (Opcional)
-    // private final cListaAdministradores listaAdministradores; // Lista de Administradores (Opcional)
+    private final cListaRecepcionistas listaRecepcionistas;
+    
+    private final cAdministrador administrador; 
 
-    // Constructor que recibe y almacena las listas de usuarios.
-    public cAutenticador(cListaClientes listaClientes) {
-        // <--- NOTA: Inicializa la lista de clientes
-        this.listaClientes = listaClientes; 
-        // Inicializa las otras listas aquí si las tienes
+    
+    public cAutenticador(cListaClientes listaClientes, cListaRecepcionistas listaRecepcionistas) {
+        this.listaClientes = listaClientes;
+        this.listaRecepcionistas = listaRecepcionistas;
+        
+        
+        this.administrador = new cAdministrador(
+             "Juan Pérez López", 
+             "12345678J",        
+             "999111222",        
+             "juan.perez@hotel.com", 
+             "AD007",            
+             "juanP",            
+             "789admin"          
+        );
     }
 
-    /**
-     * Verifica las credenciales de un Cliente contra la lista cargada.
-     * @param usuario El nombre de usuario a buscar.
-     * @param contrasena La contraseña a verificar.
-     * @return true si las credenciales son válidas, false en caso contrario.
-     */
+    
     public boolean autenticarCliente(String usuario, String contrasena) {
-        // <--- NOTA: Obtiene la lista de clientes (con los 10 usuarios cargados)
-        List<cCliente> clientes = listaClientes.obtenerClientes(); 
+        
+        List<cCliente> clientes = listaClientes.obtenerClientes();
         
         for (cCliente cliente : clientes) {
-            // <--- NOTA: La lógica de autenticación está correcta: compara usuarioC() y contraseñaC()
+            
             if (cliente.usuarioC().equals(usuario) && cliente.contraseñaC().equals(contrasena)) {
-                return true; // Autenticación exitosa
+                return true;
             }
         }
-        return false; // Usuario o contraseña no encontrados/incorrectos
+        return false;
     }
 
-    /**
-     * Placeholder para autenticar otros roles (Recepcionista/Admin).
-     * @param usuario El nombre de usuario.
-     * @param contrasena La contraseña.
-     * @param rol El rol a autenticar ("recepcionista" o "admin").
-     * @return true si la autenticación es exitosa, false en caso contrario.
-     */
+    
     public boolean autenticarOtroRol(String usuario, String contrasena, String rol) {
-        // <--- NOTA: Lógica de autenticación Fija para Recepcionista
-        if (rol.equals("recepcionista") && usuario.equals("recep1") && contrasena.equals("123")) {
-            return true;
+        
+        if (rol.equals("recepcionista")) {
+            List<cRecepcionista> recepcionistas = listaRecepcionistas.obtenerRecepcionistas();
+            
+            for (cRecepcionista recepcionista : recepcionistas) {
+                if (recepcionista.usuarioR().equals(usuario) && recepcionista.contraseñaR().equals(contrasena)) {
+                    return true;
+                }
+            }
+            return false;
         }
         
-        // <--- NOTA: Lógica de autenticación Fija para Administrador
-        if (rol.equals("admin") && usuario.equals("admin1") && contrasena.equals("321")) {
-            return true;
+        if (rol.equals("admin")) {
+            
+            return this.administrador.autenticar(usuario, contrasena);
         }
-        
-        // Aquí se podría añadir lógica para buscar en otras listas (recepcionistas, administradores)
         
         return false;
     }

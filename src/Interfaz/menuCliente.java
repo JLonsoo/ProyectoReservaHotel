@@ -28,6 +28,7 @@ public class menuCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -77,10 +78,13 @@ public class menuCliente extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup2.add(jRadioButton4);
         jRadioButton4.setText("Simple");
 
+        buttonGroup2.add(jRadioButton5);
         jRadioButton5.setText("Deluxe ");
 
+        buttonGroup2.add(jRadioButton6);
         jRadioButton6.setText("Suite");
 
         jTextField1.setText("YYYY-MM-DD");
@@ -243,6 +247,7 @@ public class menuCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;

@@ -1,6 +1,6 @@
 package Interfaz;
 import Listas.cListaClientes;
-
+import Listas.cListaRecepcionistas;
 import javax.swing.JOptionPane;
 
 /*
@@ -25,7 +25,8 @@ public class inicioSesion extends javax.swing.JFrame {
         initComponents();
         
         cListaClientes listaClientes = new cListaClientes(); 
-        this.autenticador = new cAutenticador(listaClientes); 
+        cListaRecepcionistas listaRecepcionistas = new cListaRecepcionistas(); 
+        this.autenticador = new cAutenticador(listaClientes, listaRecepcionistas); 
         this.setLocationRelativeTo(null);
     }
 
